@@ -1,6 +1,6 @@
 python-telegram-bot==20.7
 python-dotenv
 uvloop
-httpx==0.27.2
+httpx
 anthropic
-supabase==2.8.1
+supabase
