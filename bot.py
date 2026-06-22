@@ -23,7 +23,7 @@ if not SUPABASE_URL:
 if not SUPABASE_KEY:
     raise ValueError("SUPABASE_KEY environment variable is not set!")
 
-anthropic_client = anthropic.AsyncAnthropic(api_key="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")
+anthropic_client = anthropic.AsyncAnthropic(api_key=ANTHROPIC_API_KEY)
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -34,9 +34,6 @@ logger = logging.getLogger(__name__)
 WORD_LIMIT = 100
 
 # ---------------- SUPABASE ----------------
-# Test only — paste your project URL and service_role key.
-# (Move these to env vars before this code goes public.)
-    
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # ---------------- MESSAGES ----------------
@@ -175,7 +172,7 @@ async def check_grammar(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
     try:
-        app = Application.builder().token("8294017278:AAFfT6y-CMRPKkciJXAj9-aQV9EQoWwvVu0").build()
+        app = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
         app.add_handler(CommandHandler("start", start_command))
         app.add_handler(ChatMemberHandler(handle_member_update, ChatMemberHandler.MY_CHAT_MEMBER))
